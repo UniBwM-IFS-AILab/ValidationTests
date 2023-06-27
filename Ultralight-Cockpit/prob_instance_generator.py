@@ -80,11 +80,6 @@ def main():
 		windDirectionCondition - WindDirectionCondition
 		headingCondition - HeadingCondition
 		airspeedCondition - AirspeedCondition
-        aerodrome1 - LandingSpot
-		runwayAerodrome1 - Runway
-		aerodrome1SurfaceCondition - LandingSpotSurfaceCondition
-		aerodrome1SlopeCondition - LandingSpotSlopeCondition
-		aerodrome1ObstructionCondition - LandingSpotObstructionCondition
         {}
     )	
     (:htn
@@ -105,11 +100,6 @@ def main():
 		(not (p_isOpen airvent))
 		(p_extinguisherExist fireExtinguisher)	
 		; flight phases	
-		(p_landingSpotClear aerodrome1)
-		(not (p_reachable aerodrome1))
-		(p_acceptableLandingCondition aerodrome1SurfaceCondition aerodrome1)
-		(p_acceptableLandingCondition aerodrome1SlopeCondition aerodrome1)
-		(p_acceptableLandingCondition aerodrome1ObstructionCondition aerodrome1)
         {}
     )
     (:goal
