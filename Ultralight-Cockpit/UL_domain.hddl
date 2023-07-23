@@ -36,7 +36,7 @@
 		(p_isChecked ?part - AircraftPart)
 		(p_pushedToFull ?part - AircraftPart)
 		(p_partAtPosition ?part - AircraftPart ?position - Position)		
-		(p_conditionChecked ?condition)
+		(p_conditionChecked ?condition - Condition)
 		(p_atcInformed ?message - Message)
 		(p_extinguisherExist ?extinguisher - FireExtinguisher)
 		(p_landingSpotClear ?landingSpot - LandingSpot)
