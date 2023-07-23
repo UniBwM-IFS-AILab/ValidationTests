@@ -36,7 +36,6 @@
 		(p_isChecked ?part - AircraftPart)
 		(p_pushedToFull ?part - AircraftPart)
 		(p_partAtPosition ?part - AircraftPart ?position - Position)		
-		(p_isOn ?part - AircraftPart)	
 		(p_conditionChecked ?condition)
 		(p_atcInformed ?message - Message)
 		(p_extinguisherExist ?extinguisher - FireExtinguisher)
@@ -110,7 +109,7 @@
 	)	
 	
 	(:task keep_engine_cut_off_mixture
-		:parameters(?engine - AircraftPart, ?mixtureControl - AircraftPart)
+		:parameters(?engine - AircraftPart ?mixtureControl - AircraftPart)
 	)
 
 	(:task land
@@ -121,15 +120,11 @@
 		:parameters(?landingSpot - LandingSpot)
 	)
 	
-    (:task react_to_engine_failure
-        :parameters ()
-    )
+	(:task react_to_engine_failure
+	:parameters ()
+	)
 
 	(:task recover_from_spin_stall
-		:parameters()
-	)
-	
-	(:task recover_from_spin
 		:parameters()
 	)
 	
@@ -518,7 +513,7 @@
 			(p_extinguisherExist ?extinguisher)
 		)
 		:subtasks(and
-			(task1 (extinguishFire ?extinguisher)) 
+			(task1 (extinguishFire ?extinguisher ?cabin)) 
 			(task2 (open ?airvent))
 		)
 	)
@@ -643,7 +638,7 @@
 			(not (p_reachable ?landingSpot))
 		)
         :subtasks(and
-			(task1 (cruise_flight))
+			(task1 (cruise_flight ?cruisingAltitude ?propellerRatio ?correctAirSpeed))
         )
 		:ordering()
     )
@@ -854,12 +849,11 @@
 			(p_isStalling)
 		)
         :subtasks(and
-			(task1 (adjust_part_to_position ?nose ?noseDown))
-            (task2 (increase_control_parameter ?thrustLevel))
+		(task1 (adjust_part_to_position ?nose ?noseDown))
+    		(task2 (increase_control_parameter ?thrustLevel))
         )
         :ordering(and
             (< task1 task2)
-            (< task2 task3)
         )
     )	
 	
